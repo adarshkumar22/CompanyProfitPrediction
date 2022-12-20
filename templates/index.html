@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+</head>
+<body class="m-5">
+    <h2>Calculate Profit of company</h2>
+    <!-- jinja template -->
+    <form class="form-inline" action="{{url_for('predict')}}" method="post">
+        <label for="State">Enter R&D spend:</label>
+        <input class="form-control my-3" type="number" name="rndspend" placeholder="Enter R&D spend" required >
+        <label for="State">Enter administration spend:</label>
+        <input class="form-control my-3" type="number" name="administration" placeholder="Enter administration spend" required >
+        <label for="State">Enter marketing spend:</label>
+        <input class="form-control my-3" type="number" name="marketingspend" placeholder="Enter marketing spend" required >
+        <label for="State">Choose State:</label>
+        <select class="form-control my-3" id="cars" name="state">
+            <option value=1>New York</option>
+            <option value=2>California</option>
+            <option value=2>Florida</option>
+        </select>
+        <!-- <input class="form-control m-3" type="number" name="state" placeholder="Enter 3 for newyork, 1 for California, 2 for Florida" required > -->
+        <button class="btn btn-primary" type="submit">See Profit</button>
+    </form>
+    {% if prediction > 100000 %}
+    <h4 class="badge bg-success text-wrap mt-2" style="font-size: 16px;"> The estimated profit is: {{prediction}}</h4>
+    {% else %}
+    <h4 class="badge bg-danger text-wrap mt-2" style="font-size: 16px;"> The estimated profit is: {{prediction}}</h4>
+    {% endif %}
+</body>
+</html>
